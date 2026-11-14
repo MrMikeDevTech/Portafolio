@@ -1,0 +1,99 @@
+---
+import "../styles/global.css";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const canonicalBase = Astro.site ?? new URL("https://portfolio.vercel.app");
+const canonicalUrl = new URL(`/${lang}`, canonicalBase).toString();
+const ogImageUrl = new URL("/foto.webp", canonicalBase).toString();
+---
+
+<!doctype html>
+<html lang={lang} class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL("/en", canonicalBase).toString()}
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href={new URL("/es", canonicalBase).toString()}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL("/en", canonicalBase).toString()}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_ES"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Hanken+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      (function () {
+        var html = document.documentElement;
+        if (
+          localStorage.theme === "light" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: light)").matches)
+        ) {
+          html.classList.remove("dark");
+        } else {
+          html.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden"
+  >
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+      <div
+        class="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background"
+      >
+      </div>
+      <div
+        class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tertiary/10 rounded-full blur-[120px]"
+      >
+      </div>
+    </div>
+    <slot />
+  </body>
+</html>

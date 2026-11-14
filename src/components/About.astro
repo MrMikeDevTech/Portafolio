@@ -1,0 +1,55 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="py-section-gap px-margin-mobile md:px-gutter relative" id="about">
+	<div class="max-w-container-max mx-auto">
+		<div class="flex items-center gap-4 mb-12">
+			<h2 class="font-headline-md text-headline-md text-primary">{t('about.title')}</h2>
+			<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+		</div>
+		<div class="grid md:grid-cols-2 gap-16">
+			<div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+				<p>{t('about.p1')}</p>
+				<p>{t('about.p2')}</p>
+				<p>{t('about.p3')}</p>
+			</div>
+			<div class="space-y-4">
+				<div class="bg-surface-container rounded-lg border border-outline-variant/20 overflow-hidden">
+					<details class="group" open>
+						<summary
+							class="flex justify-between items-center font-body-md text-on-surface p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors"
+						>
+							<span class="font-semibold">{t('about.q1')}</span>
+							<span class="transition group-open:rotate-180 material-symbols-outlined text-secondary">expand_more</span>
+						</summary>
+						<div class="text-on-surface-variant text-body-md p-6 pt-0 bg-surface-container-low">
+							{t('about.a1')}
+						</div>
+					</details>
+				</div>
+				<div class="bg-surface-container rounded-lg border border-outline-variant/20 overflow-hidden">
+					<details class="group">
+						<summary
+							class="flex justify-between items-center font-body-md text-on-surface p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors"
+						>
+							<span class="font-semibold">{t('about.q2')}</span>
+							<span class="transition group-open:rotate-180 material-symbols-outlined text-secondary">expand_more</span>
+						</summary>
+						<div class="text-on-surface-variant text-body-md p-6 pt-0 bg-surface-container-low">
+							{t('about.a2')}
+						</div>
+					</details>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

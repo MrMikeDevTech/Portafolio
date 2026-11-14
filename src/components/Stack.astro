@@ -1,0 +1,53 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { stack } from '../data/data';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const categoryIconText = {
+	primary: 'text-primary',
+	tertiary: 'text-tertiary',
+	secondary: 'text-secondary',
+};
+const itemIconText = {
+	primary: 'text-primary',
+	tertiary: 'text-tertiary',
+	secondary: 'text-secondary',
+	'on-surface': 'text-on-surface',
+};
+---
+
+<section class="py-section-gap px-margin-mobile md:px-gutter relative bg-surface-container-low" id="stack">
+	<div class="max-w-container-max mx-auto">
+		<div class="flex items-center gap-4 mb-12">
+			<h2 class="font-headline-md text-headline-md text-primary">{t('stack.title')}</h2>
+			<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+		</div>
+		<div class="grid md:grid-cols-3 gap-8">
+			{stack.map((category) => (
+				<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:-translate-y-2 transition-transform duration-300">
+					<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+						<span class={`material-symbols-outlined ${categoryIconText[category.accent]} text-3xl`}>{category.icon}</span>
+						<h3 class="font-headline-md text-xl text-on-surface">{category.title[lang]}</h3>
+					</div>
+					<ul class="space-y-4">
+						{category.items.map((item) => (
+							<li class="flex items-center gap-3">
+								<div class={`w-8 h-8 rounded bg-surface-variant flex items-center justify-center ${itemIconText[item.accent]}`}>
+									<span class="material-symbols-outlined text-sm">{item.icon}</span>
+								</div>
+								<span class="text-on-surface-variant font-body-md">{item.label}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MrMikeDev Studio - Frontend Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#2a1c42",
+                        "secondary-fixed": "#ede9fe",
+                        "surface-container-low": "#170e28",
+                        "inverse-primary": "#7c3aed",
+                        "surface-container-highest": "#352350",
+                        "on-tertiary-fixed": "#2e1065",
+                        "tertiary": "#a78bfa",
+                        "on-secondary-container": "#ede9fe",
+                        "outline-variant": "#4f4260",
+                        "surface-dim": "#100a1c",
+                        "inverse-surface": "#ede9fe",
+                        "tertiary-fixed": "#ede9fe",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#ede9fe",
+                        "on-secondary": "#2e1065",
+                        "on-primary-container": "#f3e8ff",
+                        "on-secondary-fixed": "#2e1065",
+                        "on-surface-variant": "#cbbfe0",
+                        "surface-bright": "#352350",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#9888ad",
+                        "on-secondary-fixed-variant": "#6d28d9",
+                        "background": "#120a1f",
+                        "surface-container-lowest": "#0b0614",
+                        "on-surface": "#ede9fe",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#6d28d9",
+                        "error-container": "#93000a",
+                        "surface-variant": "#392a4d",
+                        "secondary": "#c4b5fd",
+                        "on-primary": "#2e1065",
+                        "secondary-fixed-dim": "#c4b5fd",
+                        "on-tertiary": "#2e1065",
+                        "surface-container": "#1e1333",
+                        "on-primary-fixed": "#2e1065",
+                        "tertiary-fixed-dim": "#a78bfa",
+                        "primary-fixed-dim": "#c084fc",
+                        "secondary-container": "#4c1d95",
+                        "primary-container": "#7c3aed",
+                        "primary": "#c084fc",
+                        "on-background": "#ede9fe",
+                        "surface-container-high": "#2a1c42",
+                        "on-tertiary-fixed-variant": "#6d28d9",
+                        "surface": "#120a1f",
+                        "primary-fixed": "#f3e8ff",
+                        "surface-tint": "#c084fc",
+                        "on-primary-fixed-variant": "#6d28d9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "grid-columns": "12",
+                        "section-gap": "80px",
+                        "element-gap": "16px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Sora", "sans-serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "body-md": ["Hanken Grotesk", "sans-serif"],
+                        "label-code": ["JetBrains Mono", "monospace"],
+                        "label-caps": ["Hanken Grotesk", "sans-serif"],
+                        "headline-md": ["Sora", "sans-serif"],
+                        "display-lg": ["Sora", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-code": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
+        }
+        .bg-gradient-radial {
+            background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+        }
+        /* Hide scrollbar for carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
+<!-- Ambient Background -->
+<div class="fixed inset-0 z-[-1] pointer-events-none">
+<div class="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background"></div>
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tertiary/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-outline-variant/10 shadow-md">
+<div class="flex justify-between items-center h-20 w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<a class="flex items-center gap-2 font-display-lg text-headline-md font-bold text-primary dark:text-primary tracking-tight" href="#">
+<span class="flex items-center justify-center w-9 h-9 rounded-lg bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</span>
+<span>MrMikeDev Studio</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<ul class="flex gap-6 font-label-caps text-label-caps uppercase tracking-wider">
+<li><a class="text-primary dark:text-primary font-bold border-b-2 border-primary pb-1" data-i18n="nav.about" href="#about">About</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.services" href="#services">Services</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.projects" href="#projects">Projects</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.timeline" href="#timeline">Timeline</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.stack" href="#stack">Stack</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.contact" href="#contact">Contact</a></li>
+</ul>
+<div class="flex items-center gap-3 border-l border-outline-variant/20 pl-6">
+<select aria-label="Language" class="bg-surface-container border border-outline-variant/30 text-on-surface-variant text-sm rounded-full px-3 py-1.5 focus:outline-none focus:border-primary cursor-pointer" id="lang-select">
+<option value="en">EN</option>
+<option value="es">ES</option>
+</select>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-primary/10" id="theme-toggle">
+<span class="material-symbols-outlined" id="theme-icon">light_mode</span>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative flex items-center pt-20 pb-12 mt-12 px-margin-mobile md:px-gutter">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-7 flex flex-col items-start z-10 space-y-6">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">
+                    Diego Emmanuel<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">Rodriguez Ruvalcaba</span>
+</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant max-w-2xl" data-i18n="hero.role">
+                    Frontend Developer
+                </p>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl" data-i18n="hero.desc">
+                    Crafting precise, user-centric web experiences with modern tools and a design-driven approach. Based in logic, styled with passion.
+                </p>
+<div class="flex flex-wrap items-center gap-4 pt-4">
+<a class="px-8 py-3 bg-primary-container text-on-primary-container rounded-full font-label-caps text-label-caps font-bold uppercase tracking-wider glow-effect glow-hover transition-all" data-i18n="hero.cv" href="#">Download CV</a>
+<div class="flex gap-3">
+<a class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface hover:bg-primary/10 hover:border-primary/50 transition-all" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.54-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.11 3.04.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.33-5.21 5.62.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.2.66.79.55a11.03 11.03 0 0 0 7.77-10.78C23.02 5.24 18.27.5 12 .5Z"></path></svg>
+</a>
+<a class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface hover:bg-primary/10 hover:border-primary/50 transition-all" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"></path></svg>
+</a>
+<a class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface hover:bg-primary/10 hover:border-primary/50 transition-all" href="mailto:kalkent987@gmail.com" aria-label="Email">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative flex justify-center lg:justify-end mt-12 lg:mt-0 z-10">
+<div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-2 bg-gradient-to-tr from-primary to-surface-container-highest">
+<div class="absolute inset-0 rounded-full blur-2xl bg-primary/20 -z-10"></div>
+<img alt="Professional portrait placeholder" class="w-full h-full object-cover rounded-full border-4 border-background" data-alt="A professional headshot of a young male software developer with a friendly expression, wearing a dark minimal t-shirt. The background is a highly blurred, moody modern office setting with subtle blue and purple neon lighting reflecting off glass surfaces. The lighting on the subject is bright and flattering, creating a sharp contrast with the deep navy atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvhOKvPeOlgtTXkmmsP-HdDQB0VcRxHi_BXzY0FWaC3z9pBki-j0m-6y47NCUdCCqgxs5E3TPN7oZyOawh69jn4xIB6Zl4y6hqa532muhYCp0u3RUG347mK1L4oPoxjJDvQ2EUQdG7L6WLtsbXL8a2bWskMMyZcvRmuiv3-jbvkKzeSBVy7qRUAuCD23l9O69WuQBjOs7E-Mm3pNo8p053MmPRFWGP8Q1LjRPBFSuz8I4pD3fAl-jEmIBy-JiB0lssKh9f1vgIseEI"/>
+</div>
+</div>
+</div>
+</header>
+<!-- About Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative" id="about">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="about.title">01. About Me</h2>
+<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-16">
+<div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+<p data-i18n="about.p1">
+                        I am a passionate Computer Engineering student and a dedicated Frontend Developer. My journey into tech started with a curiosity for how things work on the screen, which quickly evolved into a deep appreciation for building intuitive and aesthetically pleasing user interfaces.
+                    </p>
+<p data-i18n="about.p2">
+                        Currently, I focus on mastering modern web technologies, translating complex logic into seamless digital experiences. I believe in writing clean, maintainable code while never losing sight of the design intent.
+                    </p>
+<p data-i18n="about.p3">
+                        When I'm not coding, I'm usually exploring new design trends, contributing to open-source, or refining my understanding of software architecture.
+                    </p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Accordion -->
+<div class="bg-surface-container rounded-lg border border-outline-variant/20 overflow-hidden">
+<details class="group" open="">
+<summary class="flex justify-between items-center font-body-md text-on-surface p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors">
+<span class="font-semibold" data-i18n="about.q1">What is my primary tech stack?</span>
+<span class="transition group-open:rotate-180 material-symbols-outlined text-secondary">expand_more</span>
+</summary>
+<div class="text-on-surface-variant text-body-md p-6 pt-0 bg-surface-container-low" data-i18n="about.a1">
+                                I specialize in React, TypeScript, and Tailwind CSS. I also have solid experience with Next.js for server-side rendering and full-stack capabilities, along with fundamental backend knowledge using Node.js and basic database management.
+                            </div>
+</details>
+</div>
+<div class="bg-surface-container rounded-lg border border-outline-variant/20 overflow-hidden">
+<details class="group">
+<summary class="flex justify-between items-center font-body-md text-on-surface p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors">
+<span class="font-semibold" data-i18n="about.q2">Are you currently open to internships or roles?</span>
+<span class="transition group-open:rotate-180 material-symbols-outlined text-secondary">expand_more</span>
+</summary>
+<div class="text-on-surface-variant text-body-md p-6 pt-0 bg-surface-container-low" data-i18n="about.a2">
+                                Yes, I am actively seeking internship opportunities or junior frontend developer roles where I can contribute to meaningful projects and continue growing my skillset in a professional environment.
+                            </div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative bg-surface-container-low" id="services">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="services.title">02. Services</h2>
+<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12" data-i18n="services.subtitle">I build and sell custom digital solutions. Here's what I can create for you:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Service 1 -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Discord Bots</h3>
+<p class="font-body-md text-on-surface-variant flex-grow">Custom bots for moderation, automation, economy systems, and community engagement tailored to your server's needs.</p>
+</div>
+<!-- Service 2 -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:border-tertiary/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+<div class="w-14 h-14 rounded-xl bg-tertiary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-3xl">language</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Web Pages</h3>
+<p class="font-body-md text-on-surface-variant flex-grow">Fast, responsive, and visually polished websites and landing pages built with modern frameworks and best practices.</p>
+</div>
+<!-- Service 3 -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Web Systems</h3>
+<p class="font-body-md text-on-surface-variant flex-grow">Full-stack web platforms with dashboards, authentication, databases, and business logic designed around your workflow.</p>
+</div>
+<!-- Service 4 -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:border-tertiary/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+<div class="w-14 h-14 rounded-xl bg-tertiary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-3xl">desktop_windows</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Desktop Apps</h3>
+<p class="font-body-md text-on-surface-variant flex-grow">Cross-platform desktop applications for Windows, macOS, and Linux, built for performance and a native feel.</p>
+</div>
+<!-- Service 5 -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:border-primary/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">smartphone</span>
+</div>
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Mobile Apps</h3>
+<p class="font-body-md text-on-surface-variant flex-grow">iOS and Android applications with clean UI, smooth performance, and integration with your backend services.</p>
+</div>
+<!-- CTA Card -->
+<div class="bg-gradient-to-br from-[#a855f7] via-[#7c3aed] to-[#4c1d95] p-8 rounded-xl border border-outline-variant/20 flex flex-col justify-center items-start">
+<h3 class="font-headline-md text-xl text-on-primary-container mb-2" data-i18n="services.cta.title">Need something custom?</h3>
+<p class="font-body-md text-on-primary-container/90 mb-6" data-i18n="services.cta.desc">Let's talk about your project and find the right solution together.</p>
+<a class="px-6 py-3 bg-background text-primary rounded-full font-label-caps text-label-caps font-bold uppercase tracking-wider hover:bg-background/80 transition-all" data-i18n="services.cta.button" href="#contact">Contact Me</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative bg-surface-container-low" id="projects">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="projects.title">03. Projects</h2>
+<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project Card 1 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col group hover:border-primary/50 transition-colors duration-300">
+<div class="h-48 overflow-hidden">
+<img alt="Project preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd08WEl_Hj931M3_98jPwamb7hxDKv7IXnjgx4wlrZX5T1V54XHrYRblIxNducSE6kxux-4a5KLNQc0pBR80CxpiFbYmCR0_FWBJQZ7dr-WjSf0Km3vGuD-OPJ87bh0FFfRKsKTyu6UiBVgHir6i2Ki9zEr3pR70iFnPhDkjJ5pL4Yo7lzQxUa7_3L1QJRnjAHs6EjRjP5cBVUsR1FkLRcsDOtfDuIg8VPbqdX-Rxw3cVFWGBBqp5gOKiRC-ZadpCVwDa8OUyifvQI"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-xl text-on-surface mb-2">E-commerce Platform</h3>
+<p class="font-body-md text-on-surface-variant mb-4 flex-grow line-clamp-3">A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and a robust admin dashboard.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">React</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Node.js</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Tailwind</span>
+</div>
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-label-caps uppercase tracking-wider hover:bg-primary/10 transition-colors" onclick="openModal('modal-project-1')" data-i18n="projects.viewDetails">View Details</button>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col group hover:border-primary/50 transition-colors duration-300">
+<div class="h-48 overflow-hidden">
+<img alt="Project preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkunX9fZJQeyrt7uxhURWo2A0DntGg_urFmDdPgjo78XJ-0eZiFHQxJ6ClHptqn3rcYu4MKbyMIftDE-OGtVLjLrFJESn344ozgK9FT4hOISAQNA4HMZiW5da03cOfW44_a1Knp5yXOmbmVcZBVNSo9L8x3DW2adOfEbOdUcMIglAn806_y7oWkGJzJ0OweLg4CBEQB1MbFGrC_eCCCTV6ql7bNUWo-MU33z3ToBVV2DcPbwF-sOhUqa1PXGCQJHFrb8r1TieZPCOc"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Analytics Dashboard</h3>
+<p class="font-body-md text-on-surface-variant mb-4 flex-grow line-clamp-3">A real-time data visualization dashboard for tracking key business metrics. Utilizes D3.js and WebSockets for dynamic updates.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Vue.js</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">D3.js</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Firebase</span>
+</div>
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-label-caps uppercase tracking-wider hover:bg-primary/10 transition-colors" onclick="openModal('modal-project-2')" data-i18n="projects.viewDetails">View Details</button>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="bg-surface-container rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col group hover:border-primary/50 transition-colors duration-300">
+<div class="h-48 overflow-hidden">
+<img alt="Project preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx1fQRLwuiQH042a8RAL4C--JF6Ydy7ULq-BH_assPrSIL-g2rG5awQxW8XdPEpMLJPrNqV075HXwdXUcIMdnCxhtCvHHqFHwTF0OZoROpIjzU4kmz1a3pzD9Z-aUWxq9t58txhHAq34VuArECiRXgOs-zcRvaDYdQpQ3hTFCsM2yyrseTD0IAS13QyOCmN2G9CX2t2GGeLDVr-eqBjYTcZ5hF7Vy20peCgwgHntbXMxdhp9zdeWj6UaZiIyC1XgpSyz0hXi2gOQ4Q"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-xl text-on-surface mb-2">Task Management App</h3>
+<p class="font-body-md text-on-surface-variant mb-4 flex-grow line-clamp-3">A collaborative productivity tool with drag-and-drop features, offline support, and team syncing capabilities.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Next.js</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">TypeScript</span>
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">Prisma</span>
+</div>
+<button class="w-full py-2.5 border border-primary text-primary rounded-lg font-label-caps uppercase tracking-wider hover:bg-primary/10 transition-colors" onclick="openModal('modal-project-3')" data-i18n="projects.viewDetails">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative" id="timeline">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="timeline.title">04. Education</h2>
+<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+</div>
+<div class="relative ml-4 md:ml-0">
+<!-- Vertical Line -->
+<div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-outline-variant/30 -translate-x-1/2 hidden md:block"></div>
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-outline-variant/30 md:hidden"></div>
+<div class="space-y-12 relative">
+<!-- Timeline Item 1 -->
+<div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center w-full group">
+<div class="absolute left-[-5px] md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1/2 mt-2 md:mt-0 ring-4 ring-background group-hover:scale-150 transition-transform z-10"></div>
+<div class="ml-8 md:ml-0 md:w-[45%] md:text-right md:pr-12">
+<h3 class="font-headline-md text-xl text-on-surface">B.S. Computer Engineering</h3>
+<p class="text-primary font-label-caps uppercase tracking-widest mt-1">University of Technology</p>
+<p class="text-on-surface-variant text-sm mt-2">Expected Graduation: 2025</p>
+</div>
+<div class="ml-8 md:ml-0 mt-4 md:mt-0 md:w-[45%] md:pl-12">
+<div class="bg-surface-container p-6 rounded-lg border border-outline-variant/20 hover:border-primary/30 transition-colors">
+<p class="text-on-surface-variant text-body-md">Focusing on software engineering principles, data structures, and human-computer interaction. Consistently maintained a top-tier GPA while participating in coding competitions.</p>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center w-full group">
+<div class="absolute left-[-5px] md:left-1/2 w-3 h-3 bg-tertiary rounded-full md:-translate-x-1/2 mt-2 md:mt-0 ring-4 ring-background group-hover:scale-150 transition-transform z-10"></div>
+<div class="ml-8 md:ml-0 md:w-[45%] md:order-2 md:pl-12">
+<h3 class="font-headline-md text-xl text-on-surface">Frontend Development Bootcamp</h3>
+<p class="text-tertiary font-label-caps uppercase tracking-widest mt-1">Code Academy</p>
+<p class="text-on-surface-variant text-sm mt-2">Completed: 2023</p>
+</div>
+<div class="ml-8 md:ml-0 mt-4 md:mt-0 md:w-[45%] md:order-1 md:text-right md:pr-12">
+<div class="bg-surface-container p-6 rounded-lg border border-outline-variant/20 hover:border-tertiary/30 transition-colors">
+<p class="text-on-surface-variant text-body-md">Intensive 12-week program focusing on modern React, state management, and responsive CSS frameworks. Built multiple production-ready applications.</p>
+</div>
+</div>
+</div>
+<div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center w-full group"><div class="absolute left-[-5px] md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1/2 mt-2 md:mt-0 ring-4 ring-background group-hover:scale-150 transition-transform z-10"></div><div class="ml-8 md:ml-0 md:w-[45%] md:text-right md:pr-12"><h3 class="font-headline-md text-xl text-on-surface">Web Design Specialization</h3><p class="text-primary font-label-caps uppercase tracking-widest mt-1">Online Learning Platform</p><p class="text-on-surface-variant text-sm mt-2">Completed: 2022</p></div><div class="ml-8 md:ml-0 mt-4 md:mt-0 md:w-[45%] md:pl-12"><div class="bg-surface-container p-6 rounded-lg border border-outline-variant/20 hover:border-primary/30 transition-colors"><p class="text-on-surface-variant text-body-md">Advanced certification focusing on UI/UX principles, typography, and visual hierarchy for digital products.</p></div></div></div><div class="relative flex flex-col md:flex-row md:justify-between items-start md:items-center w-full group"><div class="absolute left-[-5px] md:left-1/2 w-3 h-3 bg-tertiary rounded-full md:-translate-x-1/2 mt-2 md:mt-0 ring-4 ring-background group-hover:scale-150 transition-transform z-10"></div><div class="ml-8 md:ml-0 md:w-[45%] md:order-2 md:pl-12"><h3 class="font-headline-md text-xl text-on-surface">High School Diploma</h3><p class="text-tertiary font-label-caps uppercase tracking-widest mt-1">Jalisco Preparatory School</p><p class="text-on-surface-variant text-sm mt-2">Completed: 2020</p></div><div class="ml-8 md:ml-0 mt-4 md:mt-0 md:w-[45%] md:order-1 md:text-right md:pr-12"><div class="bg-surface-container p-6 rounded-lg border border-outline-variant/20 hover:border-tertiary/30 transition-colors"><p class="text-on-surface-variant text-body-md">Graduated with honors, focusing on mathematics and introductory computer science courses.</p></div></div></div></div>
+</div>
+</div>
+</section>
+<!-- Tech Stack Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative bg-surface-container-low" id="stack">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="stack.title">05. Tech Stack</h2>
+<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Frontend Category -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:-translate-y-2 transition-transform duration-300">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-primary text-3xl">desktop_windows</span>
+<h3 class="font-headline-md text-xl text-on-surface">Frontend</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">code</span></div>
+<span class="text-on-surface-variant font-body-md">React / Next.js</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-sm">javascript</span></div>
+<span class="text-on-surface-variant font-body-md">TypeScript</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-sm">style</span></div>
+<span class="text-on-surface-variant font-body-md">Tailwind CSS</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-on-surface"><span class="material-symbols-outlined text-sm">html</span></div>
+<span class="text-on-surface-variant font-body-md">HTML5 / CSS3</span>
+</li>
+</ul>
+</div>
+<!-- Backend Category -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:-translate-y-2 transition-transform duration-300">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-tertiary text-3xl">database</span>
+<h3 class="font-headline-md text-xl text-on-surface">Backend</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">terminal</span></div>
+<span class="text-on-surface-variant font-body-md">Node.js</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-sm">storage</span></div>
+<span class="text-on-surface-variant font-body-md">PostgreSQL</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-sm">api</span></div>
+<span class="text-on-surface-variant font-body-md">REST APIs</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-on-surface"><span class="material-symbols-outlined text-sm">cloud</span></div>
+<span class="text-on-surface-variant font-body-md">Firebase</span>
+</li>
+</ul>
+</div>
+<!-- Tools Category -->
+<div class="bg-surface-container p-8 rounded-xl border border-outline-variant/20 hover:-translate-y-2 transition-transform duration-300">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-secondary text-3xl">handyman</span>
+<h3 class="font-headline-md text-xl text-on-surface">Tools</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">account_tree</span></div>
+<span class="text-on-surface-variant font-body-md">Git / GitHub</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-sm">design_services</span></div>
+<span class="text-on-surface-variant font-body-md">Figma</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-sm">terminal</span></div>
+<span class="text-on-surface-variant font-body-md">VS Code</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-on-surface"><span class="material-symbols-outlined text-sm">rocket_launch</span></div>
+<span class="text-on-surface-variant font-body-md">Vercel / Netlify</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap px-margin-mobile md:px-gutter relative" id="contact">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col items-center text-center mb-12">
+<div class="flex items-center gap-4 justify-center w-full mb-4">
+<div class="h-px bg-outline-variant/30 w-16 md:w-32"></div>
+<h2 class="font-headline-md text-headline-md text-primary" data-i18n="contact.title">06. Get In Touch</h2>
+<div class="h-px bg-outline-variant/30 w-16 md:w-32"></div>
+</div>
+<p class="text-on-surface-variant font-body-lg max-w-2xl mt-4" data-i18n="contact.subtitle">I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+</div>
+<div class="max-w-2xl mx-auto bg-surface-container rounded-2xl p-8 border border-outline-variant/20 shadow-lg">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-label-code text-on-surface-variant mb-2" data-i18n="contact.name" for="name">Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder-on-surface-variant/50" id="name" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-label-code text-on-surface-variant mb-2" data-i18n="contact.email" for="email">Email</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder-on-surface-variant/50" id="email" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-label-code text-on-surface-variant mb-2" data-i18n="contact.subject" for="subject">Subject</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder-on-surface-variant/50" id="subject" placeholder="Project Inquiry" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-label-code text-on-surface-variant mb-2" data-i18n="contact.message" for="message">Message</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder-on-surface-variant/50 h-40 resize-none" id="message" placeholder="Hello, I'd like to discuss..."></textarea>
+</div>
+<button class="w-full py-4 bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps font-bold uppercase tracking-wider glow-effect glow-hover transition-all flex justify-center items-center gap-2" type="button">
+<span data-i18n="contact.send">Send Message</span>
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Modals -->
+<div class="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0" id="project-modal">
+<div class="bg-surface-container w-full max-w-4xl rounded-2xl border border-outline-variant/20 shadow-2xl overflow-hidden flex flex-col max-h-[90vh] scale-95 transition-transform duration-300" id="modal-content">
+<div class="relative h-64 md:h-96 bg-surface-container-lowest flex-shrink-0 group">
+<div class="flex overflow-x-auto snap-x snap-mandatory h-full no-scrollbar" id="modal-carousel">
+<!-- Images injected by JS -->
+</div>
+<button class="absolute top-4 right-4 w-10 h-10 bg-background/50 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:bg-background/80 transition-colors z-10" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Carousel Controls -->
+<button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/50 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:bg-background/80 transition-colors opacity-0 group-hover:opacity-100" onclick="scrollCarousel(-1)">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/50 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:bg-background/80 transition-colors opacity-0 group-hover:opacity-100" onclick="scrollCarousel(1)">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="p-8 overflow-y-auto">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-6">
+<div>
+<h3 class="font-headline-md text-3xl text-primary" id="modal-title">Project Title</h3>
+<p class="font-label-code text-on-surface-variant mt-2" id="modal-subtitle">Web Application</p>
+</div>
+<div class="flex gap-4">
+<a class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors text-sm font-label-caps uppercase" href="#" id="modal-github" target="_blank" rel="noopener noreferrer">
+<span class="material-symbols-outlined text-sm">code</span> <span data-i18n="modal.repo">Repository</span>
+                        </a>
+</div>
+</div>
+<div class="prose prose-invert max-w-none text-on-surface-variant font-body-md space-y-4 mb-8" id="modal-description">
+<p>Detailed project description goes here.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-on-surface uppercase tracking-widest mb-4">Tech Stack Used</h4>
+<div class="flex flex-wrap gap-3" id="modal-tech">
+<!-- Tech stack tags injected by JS -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10 pt-16 pb-8">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-outline-variant/10">
+<div class="md:col-span-2 space-y-4">
+<a class="flex items-center gap-2 font-display-lg text-headline-md text-primary tracking-tight" href="#">
+<span class="flex items-center justify-center w-9 h-9 rounded-lg bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</span>
+<span>MrMikeDev Studio</span>
+</a>
+<p class="text-on-surface-variant font-body-md text-sm max-w-sm" data-i18n="footer.tagline">Building precise, user-centric web experiences. Open to new projects and collaborations.</p>
+<div class="flex gap-3 pt-2">
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.54-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.11 3.04.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.33-5.21 5.62.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.2.66.79.55a11.03 11.03 0 0 0 7.77-10.78C23.02 5.24 18.27.5 12 .5Z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors" href="mailto:kalkent987@gmail.com" aria-label="Email">
+<span class="material-symbols-outlined text-lg">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface mb-4" data-i18n="footer.nav">Navigation</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.about" href="#about">About</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.services" href="#services">Services</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.projects" href="#projects">Projects</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" data-i18n="nav.contact" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface mb-4" data-i18n="footer.contact">Contact</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" data-i18n="footer.email" href="mailto:kalkent987@gmail.com">Email</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="flex items-center justify-center pt-8">
+<div class="text-on-surface-variant font-body-md text-sm text-center">© <span id="footer-year">2026</span> MrMikeDev Studio. <span data-i18n="footer.rights">All rights reserved.</span></div>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav state
+                    document.querySelectorAll('nav ul li a').forEach(a => {
+                        a.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                        a.classList.add('text-on-surface-variant');
+                    });
+                    this.classList.remove('text-on-surface-variant');
+                    this.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                }
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check initial theme (default to dark if not set, or based on OS preference)
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            htmlElement.classList.remove('dark');
+            themeIcon.textContent = 'dark_mode';
+        } else {
+            htmlElement.classList.add('dark');
+            themeIcon.textContent = 'light_mode';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeIcon.textContent = 'dark_mode';
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeIcon.textContent = 'light_mode';
+            }
+        });
+
+        // Footer year
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        // i18n
+        const translations = {
+            en: {
+                'nav.about': 'About', 'nav.services': 'Services', 'nav.projects': 'Projects',
+                'nav.timeline': 'Timeline', 'nav.stack': 'Stack', 'nav.contact': 'Contact',
+                'hero.role': 'Frontend Developer',
+                'hero.desc': 'Crafting precise, user-centric web experiences with modern tools and a design-driven approach. Based in logic, styled with passion.',
+                'hero.cv': 'Download CV',
+                'about.title': '01. About Me',
+                'about.p1': 'I am a passionate Computer Engineering student and a dedicated Frontend Developer. My journey into tech started with a curiosity for how things work on the screen, which quickly evolved into a deep appreciation for building intuitive and aesthetically pleasing user interfaces.',
+                'about.p2': 'Currently, I focus on mastering modern web technologies, translating complex logic into seamless digital experiences. I believe in writing clean, maintainable code while never losing sight of the design intent.',
+                'about.p3': "When I'm not coding, I'm usually exploring new design trends, contributing to open-source, or refining my understanding of software architecture.",
+                'about.q1': 'What is my primary tech stack?',
+                'about.a1': 'I specialize in React, TypeScript, and Tailwind CSS. I also have solid experience with Next.js for server-side rendering and full-stack capabilities, along with fundamental backend knowledge using Node.js and basic database management.',
+                'about.q2': 'Are you currently open to internships or roles?',
+                'about.a2': 'Yes, I am actively seeking internship opportunities or junior frontend developer roles where I can contribute to meaningful projects and continue growing my skillset in a professional environment.',
+                'services.title': '02. Services',
+                'services.subtitle': "I build and sell custom digital solutions. Here's what I can create for you:",
+                'services.cta.title': 'Need something custom?',
+                'services.cta.desc': "Let's talk about your project and find the right solution together.",
+                'services.cta.button': 'Contact Me',
+                'projects.title': '03. Projects',
+                'projects.viewDetails': 'View Details',
+                'timeline.title': '04. Education',
+                'stack.title': '05. Tech Stack',
+                'contact.title': '06. Get In Touch',
+                'contact.subtitle': "I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+                'contact.name': 'Name', 'contact.email': 'Email', 'contact.subject': 'Subject', 'contact.message': 'Message',
+                'contact.send': 'Send Message',
+                'modal.repo': 'Repository',
+                'footer.tagline': 'Building precise, user-centric web experiences. Open to new projects and collaborations.',
+                'footer.nav': 'Navigation', 'footer.contact': 'Contact', 'footer.rights': 'All rights reserved.',
+                'footer.email': 'Email'
+            },
+            es: {
+                'nav.about': 'Sobre mí', 'nav.services': 'Servicios', 'nav.projects': 'Proyectos',
+                'nav.timeline': 'Trayectoria', 'nav.stack': 'Stack', 'nav.contact': 'Contacto',
+                'hero.role': 'Desarrollador Frontend',
+                'hero.desc': 'Creando experiencias web precisas y centradas en el usuario con herramientas modernas y un enfoque orientado al diseño. Basado en lógica, con estilo y pasión.',
+                'hero.cv': 'Descargar CV',
+                'about.title': '01. Sobre mí',
+                'about.p1': 'Soy un apasionado estudiante de Ingeniería en Computación y un desarrollador Frontend dedicado. Mi camino en la tecnología comenzó con curiosidad por cómo funcionan las cosas en pantalla, lo que evolucionó en un profundo aprecio por construir interfaces intuitivas y estéticamente agradables.',
+                'about.p2': 'Actualmente me enfoco en dominar tecnologías web modernas, traduciendo lógica compleja en experiencias digitales fluidas. Creo en escribir código limpio y mantenible sin perder de vista la intención del diseño.',
+                'about.p3': 'Cuando no estoy programando, suelo explorar nuevas tendencias de diseño, contribuir a proyectos open-source o profundizar en arquitectura de software.',
+                'about.q1': '¿Cuál es mi stack tecnológico principal?',
+                'about.a1': 'Me especializo en React, TypeScript y Tailwind CSS. También tengo sólida experiencia con Next.js para renderizado del lado del servidor y capacidades full-stack, junto con conocimientos básicos de backend usando Node.js y manejo de bases de datos.',
+                'about.q2': '¿Estás actualmente abierto a prácticas profesionales o roles?',
+                'about.a2': 'Sí, estoy buscando activamente oportunidades de prácticas o roles de desarrollador frontend junior donde pueda contribuir a proyectos significativos y seguir creciendo profesionalmente.',
+                'services.title': '02. Servicios',
+                'services.subtitle': 'Construyo y ofrezco soluciones digitales a medida. Esto es lo que puedo crear para ti:',
+                'services.cta.title': '¿Necesitas algo a medida?',
+                'services.cta.desc': 'Hablemos de tu proyecto y encontremos juntos la solución ideal.',
+                'services.cta.button': 'Contáctame',
+                'projects.title': '03. Proyectos',
+                'projects.viewDetails': 'Ver Detalles',
+                'timeline.title': '04. Educación',
+                'stack.title': '05. Stack Tecnológico',
+                'contact.title': '06. Contáctame',
+                'contact.subtitle': 'Actualmente estoy buscando nuevas oportunidades. Si tienes una pregunta o solo quieres saludar, haré lo posible por responderte.',
+                'contact.name': 'Nombre', 'contact.email': 'Correo', 'contact.subject': 'Asunto', 'contact.message': 'Mensaje',
+                'contact.send': 'Enviar Mensaje',
+                'modal.repo': 'Repositorio',
+                'footer.tagline': 'Construyendo experiencias web precisas y centradas en el usuario. Abierto a nuevos proyectos y colaboraciones.',
+                'footer.nav': 'Navegación', 'footer.contact': 'Contacto', 'footer.rights': 'Todos los derechos reservados.',
+                'footer.email': 'Correo'
+            }
+        };
+
+        function applyLanguage(lang) {
+            const dict = translations[lang] || translations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.documentElement.lang = lang;
+            localStorage.lang = lang;
+        }
+
+        const langSelect = document.getElementById('lang-select');
+        const initialLang = localStorage.lang || (navigator.language.startsWith('es') ? 'es' : 'en');
+        langSelect.value = initialLang;
+        applyLanguage(initialLang);
+        langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+
+        // Project Modal Logic
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+        
+        const projectData = {
+            'modal-project-1': {
+                title: 'E-commerce Platform',
+                subtitle: 'Full-stack Web Application',
+                description: '<p>A comprehensive e-commerce solution engineered to handle high traffic and complex transactions. The platform includes a seamless user checkout flow, integration with Stripe for payments, and a bespoke admin dashboard for inventory management.</p><p>Challenges overcome included optimizing database queries for product search and implementing real-time stock updates using WebSockets.</p>',
+                images: [
+                    'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200&h=600',
+                    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200&h=600'
+                ],
+                tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', 'Stripe API'],
+                github: '#',
+                demo: '#'
+            },
+            'modal-project-2': {
+                title: 'Analytics Dashboard',
+                subtitle: 'Data Visualization Interface',
+                description: '<p>A performant dashboard designed for business analysts to visualize key metrics in real-time. The interface features customizable widgets, interactive charts built with D3.js, and complex data filtering capabilities.</p><p>The architecture leverages a Vue.js frontend communicating with a Firebase backend, ensuring instant updates across all connected clients without page reloads.</p>',
+                images: [
+                    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=600',
+                    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200&h=600'
+                ],
+                tech: ['Vue.js', 'D3.js', 'Firebase', 'Vuex', 'SCSS'],
+                github: '#',
+                demo: '#'
+            },
+            'modal-project-3': {
+                title: 'Task Management App',
+                subtitle: 'Productivity Tool',
+                description: '<p>A robust task management application aimed at remote teams. It supports kanban boards, calendar views, and real-time collaboration. The app was built with a focus on accessibility and offline-first capabilities.</p><p>Utilizing Next.js for server-side rendering improved initial load times significantly, while Prisma was used as an ORM to manage complex relational data effectively.</p>',
+                images: [
+                    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200&h=600',
+                    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=1200&h=600'
+                ],
+                tech: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+                github: '#',
+                demo: '#'
+            }
+        };
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if(!data) return;
+
+            // Populate data
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-subtitle').textContent = data.subtitle;
+            document.getElementById('modal-description').innerHTML = data.description;
+            document.getElementById('modal-github').href = data.github;
+
+            // Populate images
+            const carousel = document.getElementById('modal-carousel');
+            carousel.innerHTML = data.images.map(src => 
+                `<img src="${src}" class="w-full h-full object-cover snap-center flex-shrink-0" alt="Project screenshot">`
+            ).join('');
+
+            // Populate tech stack
+            const techContainer = document.getElementById('modal-tech');
+            techContainer.innerHTML = data.tech.map(tech => 
+                `<span class="px-3 py-1.5 bg-surface-variant text-on-surface-variant text-sm rounded-md font-label-code border border-outline-variant/30 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary"></span>${tech}</span>`
+            ).join('');
+
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Small delay to allow display:flex to apply before transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300); // match duration
+        }
+
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('modal-carousel');
+            const scrollAmount = carousel.clientWidth * direction;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body></html>

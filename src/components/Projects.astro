@@ -1,0 +1,54 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { projects } from '../data/data';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="py-section-gap px-margin-mobile md:px-gutter relative bg-surface-container-low" id="projects">
+	<div class="max-w-container-max mx-auto">
+		<div class="flex items-center gap-4 mb-12">
+			<h2 class="font-headline-md text-headline-md text-primary">{t('projects.title')}</h2>
+			<div class="h-px bg-outline-variant/30 flex-grow max-w-md"></div>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{projects.map((project) => (
+				<div class="bg-surface-container rounded-xl border border-outline-variant/20 overflow-hidden flex flex-col group hover:border-primary/50 transition-colors duration-300">
+					<div class="h-48 overflow-hidden">
+						<img
+							alt={project.title[lang]}
+							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+							src={project.image}
+						/>
+					</div>
+					<div class="p-6 flex-grow flex flex-col">
+						<h3 class="font-headline-md text-xl text-on-surface mb-2">{project.title[lang]}</h3>
+						<p class="font-body-md text-on-surface-variant mb-4 flex-grow line-clamp-3">{project.summary[lang]}</p>
+						<div class="flex flex-wrap gap-2 mb-6">
+							{project.tech.slice(0, 3).map((tech) => (
+								<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-xs rounded-md font-label-code">{tech}</span>
+							))}
+						</div>
+						<button
+							class="project-view-details w-full py-2.5 border border-primary text-primary rounded-lg font-label-caps uppercase tracking-wider hover:bg-primary/10 transition-colors"
+							data-project-title={project.title[lang]}
+							data-project-subtitle={project.subtitle[lang]}
+							data-project-description={project.description[lang]}
+							data-project-images={JSON.stringify(project.images)}
+							data-project-tech={JSON.stringify(project.tech)}
+							data-project-github={project.github}
+						>
+							{t('projects.viewDetails')}
+						</button>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,171 @@
+---
+import { useTranslations, otherLang } from '../i18n/utils';
+import { languages, type Lang } from '../i18n/ui';
+import { profile } from '../data/data';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const other = otherLang(lang);
+
+const navItems = [
+	{ href: '#about', key: 'nav.about' as const },
+	{ href: '#services', key: 'nav.services' as const },
+	{ href: '#projects', key: 'nav.projects' as const },
+	{ href: '#timeline', key: 'nav.timeline' as const },
+	{ href: '#stack', key: 'nav.stack' as const },
+	{ href: '#contact', key: 'nav.contact' as const },
+];
+---
+
+<nav
+	class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 shadow-md"
+	id="main-nav"
+>
+	<div class="flex justify-between items-center h-20 w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+		<a class="flex items-center gap-2 font-display-lg text-headline-md font-bold text-primary tracking-tight" href={`/${lang}/`}>
+			<img src={profile.logo} alt="MrMikeDev Studio logo" class="w-9 h-9 rounded-lg" width="36" height="36" />
+			<span>MrMikeDev Studio</span>
+		</a>
+		<div class="hidden md:flex items-center gap-8">
+			<ul class="flex gap-6 font-label-caps text-label-caps uppercase tracking-wider">
+				{navItems.map((item, i) => (
+					<li>
+						<a
+							class={
+								i === 0
+									? 'text-primary font-bold border-b-2 border-primary pb-1 nav-link'
+									: 'text-on-surface-variant hover:text-primary transition-colors nav-link'
+							}
+							href={item.href}
+						>
+							{t(item.key)}
+						</a>
+					</li>
+				))}
+			</ul>
+			<div class="flex items-center gap-3 border-l border-outline-variant/20 pl-6">
+				<div class="flex items-center gap-1 rounded-full border border-outline-variant/30 p-1 text-sm">
+					<a
+						href={`/${lang}/`}
+						aria-current={lang === 'en' ? 'page' : undefined}
+						class={`px-2 py-0.5 rounded-full transition-colors ${
+							lang === 'en' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-primary'
+						}`}
+					>
+						{languages.en}
+					</a>
+					<a
+						href={`/${other}/`}
+						aria-current={lang === 'es' ? 'page' : undefined}
+						class={`px-2 py-0.5 rounded-full transition-colors ${
+							lang === 'es' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-primary'
+						}`}
+					>
+						{languages.es}
+					</a>
+				</div>
+				<button
+					class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-primary/10"
+					id="theme-toggle"
+					aria-label="Toggle theme"
+				>
+					<span class="material-symbols-outlined" id="theme-icon">light_mode</span>
+				</button>
+			</div>
+		</div>
+		<button class="md:hidden text-on-surface p-2" id="mobile-menu-button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+			<span class="material-symbols-outlined">menu</span>
+		</button>
+	</div>
+	<div class="hidden md:hidden flex-col gap-4 px-margin-mobile pb-6" id="mobile-menu">
+		<ul class="flex flex-col gap-4 font-label-caps text-label-caps uppercase tracking-wider">
+			{navItems.map((item) => (
+				<li>
+					<a class="text-on-surface-variant hover:text-primary transition-colors nav-link" href={item.href}>
+						{t(item.key)}
+					</a>
+				</li>
+			))}
+		</ul>
+		<div class="flex items-center gap-3 pt-2">
+			<a href={`/${lang}/`} class={`px-2 py-0.5 rounded-full text-sm ${lang === 'en' ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>
+				{languages.en}
+			</a>
+			<a href={`/${other}/`} class={`px-2 py-0.5 rounded-full text-sm ${lang === 'es' ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>
+				{languages.es}
+			</a>
+			<button
+				class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-primary/10 ml-auto"
+				id="theme-toggle-mobile"
+				aria-label="Toggle theme"
+			>
+				<span class="material-symbols-outlined" id="theme-icon-mobile">light_mode</span>
+			</button>
+		</div>
+	</div>
+</nav>
+
+<script>
+	function setupTheme(toggleId: string, iconId: string) {
+		const toggleBtn = document.getElementById(toggleId);
+		const icon = document.getElementById(iconId);
+		const html = document.documentElement;
+		if (!toggleBtn || !icon) return;
+
+		icon.textContent = html.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+
+		toggleBtn.addEventListener('click', () => {
+			if (html.classList.contains('dark')) {
+				html.classList.remove('dark');
+				localStorage.theme = 'light';
+			} else {
+				html.classList.add('dark');
+				localStorage.theme = 'dark';
+			}
+			document.querySelectorAll('[id^="theme-icon"]').forEach((el) => {
+				el.textContent = html.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+			});
+		});
+	}
+
+	setupTheme('theme-toggle', 'theme-icon');
+	setupTheme('theme-toggle-mobile', 'theme-icon-mobile');
+
+	const mobileMenuButton = document.getElementById('mobile-menu-button');
+	const mobileMenu = document.getElementById('mobile-menu');
+	mobileMenuButton?.addEventListener('click', () => {
+		mobileMenu?.classList.toggle('hidden');
+		mobileMenu?.classList.toggle('flex');
+		const isOpen = mobileMenu?.classList.contains('flex') ?? false;
+		mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+	});
+
+	document.querySelectorAll('.nav-link').forEach((anchor) => {
+		anchor.addEventListener('click', (e) => {
+			const link = e.currentTarget as HTMLAnchorElement;
+			const href = link.getAttribute('href');
+			if (!href || !href.startsWith('#')) return;
+			e.preventDefault();
+			const target = document.querySelector(href);
+			if (!target) return;
+			target.scrollIntoView({ behavior: 'smooth' });
+
+			document.querySelectorAll('.nav-link').forEach((a) => {
+				a.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+				a.classList.add('text-on-surface-variant');
+			});
+			document.querySelectorAll(`.nav-link[href="${href}"]`).forEach((a) => {
+				a.classList.remove('text-on-surface-variant');
+				a.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+			});
+
+			mobileMenu?.classList.add('hidden');
+			mobileMenu?.classList.remove('flex');
+			mobileMenuButton?.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>
